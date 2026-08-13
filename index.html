@@ -156,6 +156,55 @@
     transition:opacity .2s ease;
   }
   .work-menu a:hover{ opacity:0.55; }
+
+  .nav-link-btn{
+    background:none; border:none; padding:0; cursor:pointer;
+    font:inherit; color:inherit;
+    letter-spacing:inherit; text-transform:inherit;
+    transition:opacity .2s ease;
+  }
+  .nav-link-btn:hover{ opacity:0.55; }
+
+  .modal-backdrop{
+    position:fixed; inset:0;
+    background:rgba(29,31,34,0.32);
+    backdrop-filter:blur(3px);
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+    z-index:100;
+  }
+  .modal-backdrop.hidden{ display:none; }
+
+  .modal-card{
+    background:var(--paper);
+    border:1px solid var(--hairline);
+    box-shadow:0 30px 60px -20px rgba(29,31,34,0.45), 0 10px 20px -10px rgba(29,31,34,0.2);
+    border-radius:2px;
+    max-width:440px; width:100%;
+    padding:34px 32px 30px;
+    position:relative;
+    animation:modal-rise .26s ease;
+  }
+  @keyframes modal-rise{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .modal-close{
+    position:absolute; top:14px; right:14px;
+    background:none; border:none; cursor:pointer;
+    color:var(--ink); opacity:0.35;
+    padding:4px; line-height:0;
+    transition:opacity .2s ease;
+  }
+  .modal-close:hover{ opacity:0.7; }
+
+  .cite-link{
+    color:var(--ink); text-decoration:none;
+    border-bottom:1px solid var(--hairline);
+    transition:opacity .2s ease;
+  }
+  .cite-link:hover{ opacity:0.55; }
 </style>
 </head>
 <body class="min-h-screen">
@@ -177,7 +226,7 @@
           </div>
         </div>
         <span>play</span>
-        <span>inspiration</span>
+        <button onclick="openInspiration()" class="nav-link-btn">inspiration</button>
       </div>
       <div class="hidden sm:block w-px h-4 bg-[var(--hairline)]"></div>
       <div class="flex items-center gap-4 text-[var(--ink)]">
@@ -441,7 +490,55 @@
         closeWorkMenu();
       }
     });
+  
+    function openInspiration() {
+      const m = document.getElementById('inspirationModal');
+      m.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      m.querySelector('.modal-close').focus();
+    }
+
+    function closeInspiration() {
+      document.getElementById('inspirationModal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // close only when the backdrop itself is clicked, not the card
+    function backdropClose(e) {
+      if (e.target.id === 'inspirationModal') closeInspiration();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { closeInspiration(); closeWorkMenu(); }
+    });
   </script>
+
+
+  <!-- INSPIRATION MODAL -->
+  <div id="inspirationModal" class="modal-backdrop hidden" onclick="backdropClose(event)"
+       role="dialog" aria-modal="true" aria-labelledby="inspirationTitle">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeInspiration()" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <p id="inspirationTitle" class="tracked-caps text-xs ink-soft mb-5">Inspiration</p>
+
+      <p class="text-base leading-relaxed mb-4">
+        This site is a work in progress &mdash; still building it out.
+      </p>
+
+      <p class="text-sm leading-relaxed ink-soft mb-6">
+        The design is closely based on
+        <a href="https://matthewyu.dev/" target="_blank" rel="noopener noreferrer" class="cite-link">Matthew&nbsp;Yu&rsquo;s portfolio</a>.
+        I rebuilt it as a way to learn Claude Code properly &mdash; and honestly, because I
+        just really liked how it looks. Full credit for the original design goes to him.
+      </p>
+
+      <a href="https://matthewyu.dev/" target="_blank" rel="noopener noreferrer"
+         class="cite-link text-sm tracked-nav">matthewyu.dev &#8599;</a>
+    </div>
+  </div>
 
 </body>
 </html>
