@@ -561,6 +561,14 @@ a{color:inherit;}
   max-width:var(--prose-max);
 }
 
+.about__links{
+  margin:0;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:var(--space-2);
+}
+
 .about__photo{
   width:6.5rem;
   aspect-ratio:1;
