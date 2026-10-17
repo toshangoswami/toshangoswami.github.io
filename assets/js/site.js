@@ -183,24 +183,7 @@ document.addEventListener('click', (e) => {
     closeWorkMenu();
   }
 });
-  
-function openInspiration() {
-  const m = document.getElementById('inspirationModal');
-  m.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-  m.querySelector('.modal-close').focus();
-}
-
-function closeInspiration() {
-  document.getElementById('inspirationModal').classList.add('hidden');
-  document.body.style.overflow = '';
-}
-
-// close only when the backdrop itself is clicked, not the card
-function backdropClose(e) {
-  if (e.target.id === 'inspirationModal') closeInspiration();
-}
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') { closeInspiration(); closeWorkMenu(); }
+  if (e.key === 'Escape') closeWorkMenu();
 });

@@ -27,7 +27,6 @@
             <a href="#projects" onclick="closeWorkMenu()">projects</a>
           </div>
         </div>
-        <button onclick="openInspiration()" class="nav-link-btn">inspiration</button>
       </div>
       <div class="site-nav__divider"></div>
       <div class="site-nav__social">
@@ -133,34 +132,14 @@
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    © Toshan Goswami 2026
+    <p class="site-footer__line">© Toshan Goswami 2026</p>
+    <!-- Attribution stays until the design pass lands, then it goes in that
+         same commit. See CLAUDE.md. -->
+    <p class="site-footer__credit">
+      Design based on
+      <a href="https://matthewyu.dev/" target="_blank" rel="noopener noreferrer" class="cite-link">matthewyu.dev</a>
+    </p>
   </footer>
-
-  <!-- INSPIRATION MODAL -->
-  <div id="inspirationModal" class="modal-backdrop hidden" onclick="backdropClose(event)"
-       role="dialog" aria-modal="true" aria-labelledby="inspirationTitle">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeInspiration()" aria-label="Close">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6 6 18M6 6l12 12"/></svg>
-      </button>
-
-      <p id="inspirationTitle" class="modal-card__title tracked-caps">Inspiration</p>
-
-      <p class="modal-card__body">
-        This site is a work in progress &mdash; still building it out.
-      </p>
-
-      <p class="modal-card__note">
-        The design is closely based on
-        <a href="https://matthewyu.dev/" target="_blank" rel="noopener noreferrer" class="cite-link">Matthew&nbsp;Yu&rsquo;s portfolio</a>.
-        I rebuilt it as a way to learn Claude Code properly &mdash; and honestly, because I
-        just really liked how it looks. Full credit for the original design goes to him.
-      </p>
-
-      <a href="https://matthewyu.dev/" target="_blank" rel="noopener noreferrer"
-         class="cite-link tracked-nav">matthewyu.dev &#8599;</a>
-    </div>
-  </div>
 
   <script src="assets/js/site.js" defer></script>
 </body>
