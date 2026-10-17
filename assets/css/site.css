@@ -520,6 +520,34 @@ a{color:inherit;}
 
 .ext{font-size:0.75em; color:var(--ink-soft);}
 
+/* --- now log ------------------------------------------------------------ */
+
+.now-log{
+  list-style:none;
+  margin:0;
+  padding:0;
+  max-width:var(--prose-max);
+}
+
+.now-entry{
+  display:grid;
+  gap:0.25rem var(--space-3);
+  padding:0 0 var(--space-3);
+}
+
+.now-entry:not(:last-child){
+  margin-bottom:var(--space-3);
+  border-bottom:1px solid var(--hairline);
+}
+
+.now-entry__date{margin:0;}
+
+.now-entry__body{margin:0;}
+
+@media (min-width:640px){
+  .now-entry{grid-template-columns:7rem 1fr;}
+}
+
 /* --- about -------------------------------------------------------------- */
 
 .about{
