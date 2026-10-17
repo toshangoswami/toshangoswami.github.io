@@ -87,12 +87,18 @@ or sizes in markup.
 
 **Color** — warm paper, accent pulled from the hand-drawn city artwork.
 
-    --paper        #f4f1ea
-    --ink          #1b1a17
-    --ink-soft     rgba(27,26,23,.56)
-    --hairline     rgba(27,26,23,.12)
-    --accent       #2e3f5c
-    --accent-warm  #c06b3e   /* used once, sparingly */
+    --paper            #f4f1ea
+    --ink              #1b1a17
+    --ink-soft         rgba(27,26,23,.68)
+    --hairline         rgba(27,26,23,.12)
+    --accent           #2e3f5c
+    --accent-warm      #c06b3e   /* used once, sparingly */
+    --accent-warm-ink  #9a4f23   /* when warm is used for TEXT */
+
+Two of these moved after a contrast check, because "real contrast" below wins:
+`--ink-soft` was .56, which measures 3.87:1 on paper — under the 4.5:1 floor
+for the 13px metadata it's used on; .68 measures 5.67:1. And `--accent-warm`
+is 3.44:1 as text, so warm-colored text uses `--accent-warm-ink` instead.
 
 Redefine only these tokens under `prefers-color-scheme: dark`.
 

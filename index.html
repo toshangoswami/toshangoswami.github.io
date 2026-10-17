@@ -12,6 +12,8 @@
 </head>
 <body>
 
+  <a href="#content" class="skip-link">Skip to content</a>
+
   <!-- NAV -->
   <header class="site-header">
     <a href="/" class="site-header__name">Toshan Goswami</a>
@@ -36,6 +38,8 @@
       </div>
     </nav>
   </header>
+
+  <main id="content">
 
   <!-- HERO -->
   <section class="hero">
@@ -82,10 +86,12 @@
     <div class="cards">
 
       <!-- To use a real cover, replace the .card__media--todo div with either:
-             <img src="../../assets/img/<slug>-cover.webp" alt="" width="640" height="400" loading="lazy">
+             <img src="assets/img/<slug>-cover.webp" alt="" width="640" height="400" loading="lazy">
            or, for a short muted loop:
              <video muted loop playsinline autoplay preload="metadata"
-                    poster="assets/img/<slug>-poster.webp" width="640" height="400"></video>
+                    poster="assets/img/<slug>-poster.webp" width="640" height="400">
+               <source src="assets/video/<slug>.mp4" type="video/mp4">
+             </video>
            Keep videos under 5MB. See CLAUDE.md. -->
 
       <article class="card">
@@ -220,6 +226,8 @@
            width="128" height="128" />
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="site-footer">

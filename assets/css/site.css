@@ -9,10 +9,14 @@
   /* color — warm paper, accent pulled from the hand-drawn city artwork */
   --paper:#f4f1ea;
   --ink:#1b1a17;
-  --ink-soft:rgba(27,26,23,.56);
+  /* .68, not .56 — at .56 this is 3.87:1 on paper, under the 4.5:1 floor for
+     the 13px metadata it's used on. .68 measures 5.67:1. */
+  --ink-soft:rgba(27,26,23,.68);
   --hairline:rgba(27,26,23,.12);
   --accent:#2e3f5c;
   --accent-warm:#c06b3e;
+  /* darker warm, for warm-colored TEXT — #c06b3e is only 3.44:1 on paper */
+  --accent-warm-ink:#9a4f23;
 
   /* raised surfaces (cards, the polaroid) sit slightly above the paper */
   --surface:#faf8f3;
@@ -60,6 +64,7 @@
     --hairline:rgba(236,231,221,.14);
     --accent:#9bb3cd;
     --accent-warm:#d9935f;
+    --accent-warm-ink:#d9935f;
     --surface:#231f1b;
   }
 }
@@ -71,6 +76,7 @@
   --hairline:rgba(236,231,221,.14);
   --accent:#9bb3cd;
   --accent-warm:#d9935f;
+  --accent-warm-ink:#d9935f;
   --surface:#231f1b;
 }
 
@@ -98,6 +104,18 @@ img,video{max-width:100%; display:block;}
 
 a{color:inherit;}
 
+.skip-link{
+  position:absolute;
+  left:-9999px;
+  top:0;
+  background:var(--paper);
+  color:var(--ink);
+  padding:var(--space-1) var(--space-2);
+  border:1px solid var(--hairline);
+  z-index:200;
+}
+.skip-link:focus{left:var(--space-2); top:var(--space-2);}
+
 :focus-visible{
   outline:2px solid var(--accent);
   outline-offset:3px;
@@ -124,8 +142,6 @@ a{color:inherit;}
   letter-spacing:var(--track-meta);
   color:var(--ink-soft);
 }
-
-.prose{max-width:var(--prose-max);}
 
 /* --- layout ------------------------------------------------------------- */
 
@@ -463,7 +479,7 @@ a{color:inherit;}
 }
 
 .todo{
-  color:var(--accent-warm);
+  color:var(--accent-warm-ink);
   font-weight:500;
 }
 
@@ -517,8 +533,6 @@ a{color:inherit;}
   .project-row{grid-template-columns:4rem 1fr 10rem auto;}
   .project-row__tag{display:block;}
 }
-
-.ext{font-size:0.75em; color:var(--ink-soft);}
 
 /* --- now log ------------------------------------------------------------ */
 
