@@ -1,30 +1,77 @@
 /* ==========================================================================
    site.css — shared by every page.
-
-   Step 1: ported from the inline <style> block and Tailwind utility classes
-   that used to live in index.html. This is a faithful port, not a redesign —
-   the design values are revisited in the design pass.
+   Tokens live here and only here. Don't hardcode colors or sizes in markup.
    ========================================================================== */
 
 /* --- tokens ------------------------------------------------------------- */
 
 :root{
-  --paper:#e6e9ed;
-  --ink:#1d1f22;
-  --ink-soft:rgba(29,31,34,0.55);
-  --hairline:rgba(29,31,34,0.14);
+  /* color — warm paper, accent pulled from the hand-drawn city artwork */
+  --paper:#f4f1ea;
+  --ink:#1b1a17;
+  --ink-soft:rgba(27,26,23,.56);
+  --hairline:rgba(27,26,23,.12);
+  --accent:#2e3f5c;
+  --accent-warm:#c06b3e;
 
-  --font:"Jost","Avenir Next","Century Gothic","Futura",system-ui,sans-serif;
+  /* raised surfaces (cards, the polaroid) sit slightly above the paper */
+  --surface:#faf8f3;
 
-  --track-caps:0.24em;
-  --track-nav:0.12em;
-  --track-display:0.05em;
+  /* type */
+  --font-display:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --font-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
 
-  --page-max:56rem;
+  --fs-xs:0.8125rem;   /* 13 */
+  --fs-sm:0.9375rem;   /* 15 */
+  --fs-md:1.125rem;    /* 18 */
+  --fs-lg:1.5rem;      /* 24 */
+  --fs-xl:2.125rem;    /* 34 */
+  --fs-display:clamp(2.6rem,6vw,4.5rem);
+
+  --track-caps:0.16em;
+  --track-meta:0.08em;
+
+  /* layout — 8px base */
+  --space-1:0.5rem;
+  --space-2:1rem;
+  --space-3:1.5rem;
+  --space-4:2rem;
+  --space-6:3rem;
+  --space-8:4rem;
+
+  --page-max:1040px;
+  --prose-max:680px;
   --gutter:1.5rem;
-  --gutter-wide:2rem;
+  --section-gap:4rem;
+}
 
-  --section-gap:7rem;
+@media (min-width:768px){
+  :root{
+    --gutter:2.5rem;
+    --section-gap:6rem;
+  }
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#1a1815;
+    --ink:#ece7dd;
+    --ink-soft:rgba(236,231,221,.56);
+    --hairline:rgba(236,231,221,.14);
+    --accent:#9bb3cd;
+    --accent-warm:#d9935f;
+    --surface:#231f1b;
+  }
+}
+
+:root[data-theme="dark"]{
+  --paper:#1a1815;
+  --ink:#ece7dd;
+  --ink-soft:rgba(236,231,221,.56);
+  --hairline:rgba(236,231,221,.14);
+  --accent:#9bb3cd;
+  --accent-warm:#d9935f;
+  --surface:#231f1b;
 }
 
 /* --- reset -------------------------------------------------------------- */
@@ -38,29 +85,47 @@ html,body{
   padding:0;
   background:var(--paper);
   color:var(--ink);
-  font-family:var(--font);
+  font-family:var(--font-body);
+  font-size:var(--fs-sm);
+  line-height:1.6;
   overflow-x:clip;
+  -webkit-font-smoothing:antialiased;
 }
 
 body{min-height:100vh;}
 
-img{max-width:100%;}
+img,video{max-width:100%; display:block;}
+
+a{color:inherit;}
+
+:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+  border-radius:1px;
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.01ms !important; transition-duration:.01ms !important;}
+}
 
 /* --- type helpers ------------------------------------------------------- */
 
-.tracked-caps{
+.label{
+  font-size:var(--fs-xs);
   letter-spacing:var(--track-caps);
   text-transform:uppercase;
-  font-size:0.75rem;
+  color:var(--ink-soft);
+  margin:0 0 var(--space-3);
+}
+
+.meta{
+  font-size:var(--fs-xs);
+  letter-spacing:var(--track-meta);
   color:var(--ink-soft);
 }
 
-.tracked-nav{
-  letter-spacing:var(--track-nav);
-  text-transform:lowercase;
-}
-
-.ink-soft{color:var(--ink-soft);}
+.prose{max-width:var(--prose-max);}
 
 /* --- layout ------------------------------------------------------------- */
 
@@ -72,180 +137,142 @@ img{max-width:100%;}
 
 .section{margin-bottom:var(--section-gap);}
 
+.section__head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:var(--space-2);
+  border-bottom:1px solid var(--hairline);
+  padding-bottom:var(--space-1);
+  margin-bottom:var(--space-4);
+}
+
+.section__title{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:var(--fs-lg);
+  margin:0;
+}
+
 /* --- header / nav ------------------------------------------------------- */
 
 .site-header{
+  max-width:var(--page-max);
+  margin-inline:auto;
+  padding:var(--space-4) var(--gutter);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:2rem;
+  gap:var(--space-3);
 }
 
 .site-header__name{
-  font-size:0.875rem;
-  letter-spacing:0.025em;
+  font-family:var(--font-display);
+  font-size:var(--fs-md);
+  text-decoration:none;
+  color:var(--ink);
 }
 
 .site-nav{
   display:flex;
   align-items:center;
-  gap:2rem;
+  gap:var(--space-3);
 }
 
 .site-nav__links{
-  display:none;
+  display:flex;
   align-items:center;
-  gap:2rem;
-  font-size:0.875rem;
-  color:var(--ink-soft);
+  gap:var(--space-3);
+  font-size:var(--fs-xs);
+  letter-spacing:var(--track-meta);
 }
 
+.site-nav__links a{
+  color:var(--ink-soft);
+  text-decoration:none;
+  transition:color .2s ease;
+}
+.site-nav__links a:hover{color:var(--ink);}
+
 .site-nav__divider{
-  display:none;
   width:1px;
-  height:1rem;
+  height:0.875rem;
   background:var(--hairline);
 }
 
 .site-nav__social{
   display:flex;
   align-items:center;
-  gap:1rem;
-  color:var(--ink);
+  gap:var(--space-2);
 }
 
-.nav-link-btn{
-  background:none;
-  border:none;
-  padding:0;
-  cursor:pointer;
-  font:inherit;
-  color:inherit;
-  letter-spacing:inherit;
-  text-transform:inherit;
-  transition:opacity .2s ease;
-}
-.nav-link-btn:hover{opacity:0.55;}
-
-.nav-caret{font-size:0.6em; vertical-align:middle;}
-
-.work-toggle{
-  color:var(--ink);
-  display:flex;
-  align-items:center;
-}
-
-.work-wrap{position:relative;}
-
-.work-menu{
-  position:absolute;
-  top:calc(100% + 12px);
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--paper);
-  border:1px solid var(--hairline);
-  box-shadow:0 14px 28px -14px rgba(29,31,34,0.3);
-  padding:6px 0;
-  min-width:130px;
-  border-radius:2px;
-  z-index:50;
-  font-size:0.875rem;
-}
-.work-menu.hidden{display:none;}
-.work-menu a{
-  display:block;
-  padding:9px 18px;
-  color:var(--ink);
-  text-decoration:none;
-  transition:opacity .2s ease;
-}
-.work-menu a:hover{opacity:0.55;}
-
-.arrow-btn{
-  color:var(--ink);
-  opacity:0.35;
-  transition:opacity .2s ease;
-  cursor:pointer;
-  background:none;
-  border:none;
-  padding:0;
+.icon-link{
+  color:var(--ink-soft);
+  transition:color .2s ease;
   line-height:0;
+  display:inline-flex;
 }
-.arrow-btn:hover{opacity:0.8;}
+.icon-link:hover{color:var(--ink);}
 
 /* --- hero --------------------------------------------------------------- */
 
 .hero{
-  display:flex;
-  flex-direction:column;
+  max-width:var(--page-max);
+  margin-inline:auto;
+  padding:var(--space-4) var(--gutter) var(--section-gap);
+  display:grid;
+  gap:var(--space-8);
   align-items:center;
-  padding:1.5rem var(--gutter) 6rem;
-  text-align:center;
 }
 
-.hero__eyebrow{margin:0 0 2rem;}
-
-.glow-name{
-  color:#2b46e8;
-  filter:blur(4px);
-  opacity:0.75;
-  letter-spacing:var(--track-display);
-  font-weight:500;
-  font-size:13vw;
-  line-height:1;
-  margin:0 0 -1.4rem;
-  position:relative;
-  z-index:0;
-  user-select:none;
-  pointer-events:none;
+.hero__name{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:var(--fs-display);
+  line-height:1.02;
+  margin:0 0 var(--space-3);
 }
 
-.hero__gallery{
-  position:relative;
-  margin-top:1rem;
-  z-index:10;
+.hero__line{
+  font-size:var(--fs-md);
+  line-height:1.5;
+  max-width:26ch;
+  margin:0 0 var(--space-3);
+  text-wrap:pretty;
 }
 
-.hero__caption{margin:1.5rem 0 0;}
-
-.hero__scroll{
-  margin-top:4rem;
-  color:var(--ink-soft);
-}
-
-.gallery-nav{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-}
-.gallery-nav--prev{left:-2.25rem;}
-.gallery-nav--next{right:-2.25rem;}
+.hero__where{margin:0;}
 
 /* --- polaroid flipbook -------------------------------------------------- */
+
+.flipbook{
+  display:flex;
+  flex-direction:column;
+  gap:var(--space-2);
+}
 
 .gallery-stack{
   position:relative;
   perspective:1400px;
-  width:68vw;
-  max-width:520px;
+  width:100%;
+  max-width:420px;
   aspect-ratio:4 / 3;
 }
 
 .polaroid{
-  background:#f8f7f3;
-  padding:18px 18px 34px 18px;
-  box-shadow:0 26px 50px -22px rgba(29,31,34,0.28), 0 8px 18px -10px rgba(29,31,34,0.12);
-  border-radius:3px;
+  background:var(--surface);
+  padding:16px 16px 30px;
+  box-shadow:0 26px 50px -24px rgba(27,26,23,.28), 0 8px 18px -12px rgba(27,26,23,.12);
+  border-radius:2px;
 }
 
 .stack-card{
   position:absolute;
   inset:0;
   border-radius:2px;
-  box-shadow:0 20px 40px -18px rgba(29,31,34,0.3), 0 6px 14px -8px rgba(29,31,34,0.12);
 }
-.stack-card.behind-a{transform:rotate(-5deg) translate(-20px,11px); z-index:1; opacity:0.72;}
-.stack-card.behind-b{transform:rotate(4deg) translate(18px,14px); z-index:2; opacity:0.85;}
+.stack-card.behind-a{transform:rotate(-4deg) translate(-16px,9px); z-index:1; opacity:0.6;}
+.stack-card.behind-b{transform:rotate(3deg) translate(14px,12px); z-index:2; opacity:0.8;}
 .stack-card.main{
   z-index:3;
   transform-style:preserve-3d;
@@ -262,7 +289,7 @@ img{max-width:100%;}
 
 .photo-window{
   position:absolute;
-  top:22px; left:22px; right:22px; bottom:40px;
+  top:20px; left:20px; right:20px; bottom:36px;
   overflow:hidden;
   background:#f4f2ea;
 }
@@ -299,8 +326,8 @@ img{max-width:100%;}
 
 .stamp{
   position:absolute;
-  top:12px; right:12px;
-  width:58px; height:50px;
+  top:10px; right:10px;
+  width:52px; height:45px;
   border:1px solid rgba(52,68,96,0.45);
   outline:1px solid rgba(52,68,96,0.26);
   outline-offset:3px;
@@ -316,74 +343,95 @@ img{max-width:100%;}
   z-index:5;
   text-align:center;
 }
-.stamp-code{font-weight:500; font-size:11px; letter-spacing:0.1em;}
-.stamp-date{font-size:6px; letter-spacing:0.02em; margin-top:3px; opacity:0.85; white-space:nowrap;}
+.stamp-code{font-weight:500; font-size:10px; letter-spacing:0.1em;}
+.stamp-date{font-size:6px; letter-spacing:0.02em; margin-top:2px; opacity:0.85; white-space:nowrap;}
 
-/* --- about -------------------------------------------------------------- */
-
-.about{
+/* flipbook controls sit under the stack, not floating outside it */
+.flipbook__controls{
   display:flex;
-  flex-direction:column;
-  gap:2.5rem;
-  align-items:flex-start;
+  align-items:center;
+  gap:var(--space-2);
+  max-width:420px;
 }
 
-.about__bio{
-  font-size:0.9375rem;
-  line-height:1.625;
+.flipbook__caption{
   flex:1;
   margin:0;
 }
 
-.about__photo{
-  width:7rem;
-  aspect-ratio:1;
-  object-fit:cover;
-  border-radius:50%;
-  flex-shrink:0;
-  align-self:flex-end;
+.arrow-btn{
+  color:var(--ink-soft);
+  transition:color .2s ease;
+  cursor:pointer;
+  background:none;
+  border:none;
+  padding:2px;
+  line-height:0;
 }
+.arrow-btn:hover{color:var(--ink);}
 
-/* --- projects ----------------------------------------------------------- */
-
-.projects__label{margin:0 0 1rem;}
+/* --- projects list ------------------------------------------------------ */
 
 .project-row{
   display:grid;
-  grid-template-columns:3rem 1fr auto;
+  grid-template-columns:3.5rem 1fr auto;
   align-items:baseline;
-  padding:1rem 0;
-  border-top:1px solid var(--hairline);
-  transition:opacity .2s ease;
+  gap:var(--space-2);
+  padding:var(--space-2) 0;
+  border-bottom:1px solid var(--hairline);
   text-decoration:none;
   color:inherit;
+  transition:opacity .2s ease;
 }
-.project-row:hover{opacity:0.55;}
-.project-row:last-child{border-bottom:1px solid var(--hairline);}
+.project-row:first-child{border-top:1px solid var(--hairline);}
+.project-row:hover{opacity:0.6;}
 
-.project-row__year{font-size:0.875rem; color:var(--ink-soft);}
-.project-row__name{font-size:1.125rem;}
-.project-row__tag{font-size:0.75rem; color:var(--ink-soft);}
+.project-row__year{font-size:var(--fs-xs); color:var(--ink-soft);}
+.project-row__name{font-size:var(--fs-md);}
+.project-row__tag{
+  font-size:var(--fs-xs);
+  letter-spacing:var(--track-meta);
+  color:var(--ink-soft);
+}
 
-.ext{font-size:0.875rem; color:var(--ink-soft);}
+.ext{font-size:0.75em; color:var(--ink-soft);}
+
+/* --- about -------------------------------------------------------------- */
+
+.about{
+  display:grid;
+  gap:var(--space-4);
+  align-items:start;
+}
+
+.about__bio{
+  margin:0 0 var(--space-3);
+  max-width:var(--prose-max);
+}
+
+.about__photo{
+  width:6.5rem;
+  aspect-ratio:1;
+  object-fit:cover;
+  border-radius:50%;
+}
 
 /* --- footer ------------------------------------------------------------- */
 
 .site-footer{
-  text-align:center;
-  padding-bottom:2.5rem;
+  max-width:var(--page-max);
+  margin-inline:auto;
+  padding:var(--space-4) var(--gutter);
+  border-top:1px solid var(--hairline);
   color:var(--ink-soft);
-  font-size:0.75rem;
-  letter-spacing:0.025em;
+  font-size:var(--fs-xs);
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--space-2);
+  justify-content:space-between;
 }
 
-.site-footer__line{margin:0;}
-
-.site-footer__credit{
-  margin:0.5rem 0 0;
-  font-size:0.6875rem;
-  opacity:0.8;
-}
+.site-footer p{margin:0;}
 
 /* --- links -------------------------------------------------------------- */
 
@@ -391,38 +439,18 @@ img{max-width:100%;}
   color:var(--ink);
   text-decoration:none;
   border-bottom:1px solid var(--hairline);
-  transition:opacity .2s ease;
+  transition:border-color .2s ease;
 }
-.cite-link:hover{opacity:0.55;}
+.cite-link:hover{border-color:var(--ink);}
 
 /* --- responsive --------------------------------------------------------- */
 
-@media (min-width:640px){
-  .site-nav__links{display:flex;}
-  .site-nav__divider{display:block;}
-
-  .glow-name{font-size:7vw; margin-bottom:-1.8rem;}
-
-  .about{flex-direction:row; align-items:flex-start;}
-  .about__photo{width:8rem; align-self:auto;}
-
+@media (min-width:860px){
+  .hero{
+    grid-template-columns:1fr auto;
+    padding-top:var(--space-6);
+  }
+  .about{grid-template-columns:1fr auto;}
+  .about__photo{width:8rem;}
   .project-row{grid-template-columns:4rem 1fr auto;}
-  .project-row__name{font-size:1.25rem;}
-}
-
-@media (min-width:768px){
-  .site-header{padding:2rem 3.5rem;}
-  .wrap{padding-inline:var(--gutter-wide);}
-
-  .glow-name{font-size:5.2vw;}
-
-  .gallery-nav--prev{left:-3.5rem;}
-  .gallery-nav--next{right:-3.5rem;}
-}
-
-@media (max-width:640px){
-  .stamp{width:44px; height:38px; top:8px; right:8px;}
-  .stamp-code{font-size:8.5px;}
-  .stamp-date{font-size:5px; margin-top:2px;}
-  .polaroid{padding:12px 12px 26px 12px;}
 }

@@ -4,38 +4,30 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Toshan Goswami</title>
+<meta name="description" content="I put sensors on physical things nobody is measuring well, and build the software that makes sense of them." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 
   <!-- NAV -->
   <header class="site-header">
-    <div class="site-header__name">Toshan Goswami</div>
+    <a href="/" class="site-header__name">Toshan Goswami</a>
     <nav class="site-nav">
-      <div class="site-nav__links tracked-nav">
-        <div class="work-wrap">
-          <button id="workToggle" onclick="toggleWorkMenu(event)"
-                  class="nav-link-btn work-toggle tracked-nav"
-                  aria-haspopup="true" aria-expanded="false">
-            work <span class="nav-caret">&#9662;</span>
-          </button>
-          <div id="workMenu" class="work-menu hidden tracked-nav">
-            <a href="#about" onclick="closeWorkMenu()">about</a>
-            <a href="#projects" onclick="closeWorkMenu()">projects</a>
-          </div>
-        </div>
+      <div class="site-nav__links">
+        <a href="#projects">projects</a>
+        <a href="#about">about</a>
       </div>
       <div class="site-nav__divider"></div>
       <div class="site-nav__social">
         <a href="https://www.linkedin.com/in/toshan-goswami-067997421/"
            target="_blank" rel="noopener noreferrer"
-           aria-label="LinkedIn" class="arrow-btn">
+           aria-label="LinkedIn" class="icon-link">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1s2.5 1.12 2.5 2.5ZM.24 8.25h4.5V23H.24V8.25Zm7.5 0h4.31v2.01h.06c.6-1.14 2.06-2.34 4.24-2.34 4.54 0 5.38 2.99 5.38 6.88V23h-4.5v-6.5c0-1.55-.03-3.54-2.16-3.54-2.17 0-2.5 1.69-2.5 3.43V23h-4.5V8.25Z"/></svg>
         </a>
-        <a href="mailto:toshangoswami17@gmail.com" aria-label="Email" class="arrow-btn">
+        <a href="mailto:toshangoswami17@gmail.com" aria-label="Email" class="icon-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
         </a>
       </div>
@@ -44,15 +36,16 @@
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero__eyebrow tracked-caps">Engineer / Maker / University of Michigan</p>
+    <div class="hero__text">
+      <h1 class="hero__name">Toshan Goswami</h1>
+      <p class="hero__line">
+        I put sensors on physical things nobody is measuring well, and build the
+        software that makes sense of them.
+      </p>
+      <p class="hero__where meta">Engineering student at the University of Michigan</p>
+    </div>
 
-    <h1 class="glow-name">Toshan Goswami</h1>
-
-    <div class="hero__gallery">
-      <button onclick="prevPlace()" class="arrow-btn gallery-nav gallery-nav--prev" aria-label="Previous">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5 8 12l7 7"/></svg>
-      </button>
-
+    <div class="flipbook">
       <div class="gallery-stack">
         <div class="stack-card behind-a polaroid">
           <div id="behindA" class="photo-window ghost"></div>
@@ -60,85 +53,86 @@
         <div class="stack-card behind-b polaroid">
           <div id="behindB" class="photo-window ghost"></div>
         </div>
-
         <div id="mainCard" class="stack-card main polaroid">
           <div id="mainWindow" class="photo-window"></div>
         </div>
       </div>
 
-      <button onclick="nextPlace()" class="arrow-btn gallery-nav gallery-nav--next" aria-label="Next">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 5 7 7-7 7"/></svg>
-      </button>
+      <div class="flipbook__controls">
+        <p id="placeCaption" class="flipbook__caption meta">Boston</p>
+        <button onclick="prevPlace()" class="arrow-btn" aria-label="Previous place">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5 8 12l7 7"/></svg>
+        </button>
+        <button onclick="nextPlace()" class="arrow-btn" aria-label="Next place">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+      </div>
     </div>
-
-    <p id="placeCaption" class="hero__caption tracked-caps">Boston</p>
-
-    <div class="hero__scroll">
-      <svg width="26" height="16" viewBox="0 0 26 16" fill="none" stroke="currentColor" stroke-width="1.4">
-        <path d="M1 1l12 8 12-8"/>
-        <path d="M1 7l12 8 12-8"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="wrap section about">
-    <p class="about__bio">
-      Toshan Goswami is a Computer Engineering student at the
-      University of Michigan. He builds at the intersection of hardware and
-      software — from computer vision pipelines to physical machines — and
-      enjoys turning ideas into working prototypes. Recent projects include
-      a radio-controlled car built from scratch, a computer vision system
-      for tracking badminton gameplay, a wildfire spread simulator, and a
-      crack-detection tool for aircraft surfaces.
-    </p>
-    <img src="assets/img/toshan-photo.jpg"
-         alt="Toshan Goswami"
-         class="about__photo"
-         width="128" height="128" />
   </section>
 
   <!-- PROJECTS -->
   <section id="projects" class="wrap section">
-    <p class="projects__label tracked-caps">Projects</p>
+    <div class="section__head">
+      <h2 class="section__title">Projects</h2>
+    </div>
 
     <div>
-      <a href="https://github.com/toshangoswami/WindMesh" target="_blank" rel="noopener noreferrer"
-         class="project-row">
-        <span class="project-row__year">2026</span>
-        <span class="project-row__name">WindMesh <span class="ext">&#8599;</span></span>
-        <span class="project-row__tag tracked-nav">simulation</span>
-      </a>
       <a href="https://github.com/toshangoswami/Airframe-AE-Array" target="_blank" rel="noopener noreferrer"
          class="project-row">
         <span class="project-row__year">2026</span>
         <span class="project-row__name">Airframe AE <span class="ext">&#8599;</span></span>
-        <span class="project-row__tag tracked-nav">damage detection</span>
+        <span class="project-row__tag">damage detection</span>
+      </a>
+      <a href="https://github.com/toshangoswami/WindMesh" target="_blank" rel="noopener noreferrer"
+         class="project-row">
+        <span class="project-row__year">2026</span>
+        <span class="project-row__name">WindMesh <span class="ext">&#8599;</span></span>
+        <span class="project-row__tag">simulation</span>
       </a>
       <a href="https://github.com/toshangoswami/Badminton-AI" target="_blank" rel="noopener noreferrer"
          class="project-row">
         <span class="project-row__year">2026</span>
         <span class="project-row__name">Badminton Shot Tracker <span class="ext">&#8599;</span></span>
-        <span class="project-row__tag tracked-nav">computer vision</span>
+        <span class="project-row__tag">computer vision</span>
       </a>
       <a href="https://drive.google.com/drive/folders/1yh-0JzHJuckfS0Cz1pottmgS6zuxa1Uc?usp=drive_link" target="_blank" rel="noopener noreferrer"
          class="project-row">
         <span class="project-row__year">2026</span>
         <span class="project-row__name">RC Car <span class="ext">&#8599;</span></span>
-        <span class="project-row__tag tracked-nav">hardware</span>
+        <span class="project-row__tag">hardware</span>
       </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="wrap section">
+    <div class="section__head">
+      <h2 class="section__title">About</h2>
+    </div>
+
+    <div class="about">
+      <div>
+        <!-- TODO: rewrite this in your own words. These are your original
+             sentences, moved to first person with the major removed. -->
+        <p class="about__bio">
+          I'm an engineering student at the University of Michigan. I build at the
+          intersection of hardware and software — from computer vision pipelines to
+          physical machines. Recent projects: a radio-controlled car built from
+          scratch, a computer vision system for tracking badminton gameplay, a
+          wildfire spread simulator, and a crack-detection tool for aircraft surfaces.
+        </p>
+      </div>
+      <img src="assets/img/toshan-photo.jpg"
+           alt="Toshan Goswami"
+           class="about__photo"
+           width="128" height="128" />
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <p class="site-footer__line">© Toshan Goswami 2026</p>
-    <!-- Attribution stays until the design pass lands, then it goes in that
-         same commit. See CLAUDE.md. -->
-    <p class="site-footer__credit">
-      Design based on
-      <a href="https://matthewyu.dev/" target="_blank" rel="noopener noreferrer" class="cite-link">matthewyu.dev</a>
-    </p>
+    <p>© Toshan Goswami 2026</p>
+    <p><a href="mailto:toshangoswami17@gmail.com" class="cite-link">toshangoswami17@gmail.com</a></p>
   </footer>
 
   <script src="assets/js/site.js" defer></script>

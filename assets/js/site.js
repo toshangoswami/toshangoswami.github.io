@@ -160,30 +160,5 @@ function flip(delta) {
 function nextPlace() { flip(1); }
 function prevPlace() { flip(-1); }
 
-renderMain();
-
-function toggleWorkMenu(e) {
-  e.stopPropagation();
-  const menu = document.getElementById('workMenu');
-  const btn = document.getElementById('workToggle');
-  const willOpen = menu.classList.contains('hidden');
-  menu.classList.toggle('hidden');
-  btn.setAttribute('aria-expanded', String(willOpen));
-}
-
-function closeWorkMenu() {
-  document.getElementById('workMenu').classList.add('hidden');
-  document.getElementById('workToggle').setAttribute('aria-expanded', 'false');
-}
-
-document.addEventListener('click', (e) => {
-  const menu = document.getElementById('workMenu');
-  const btn = document.getElementById('workToggle');
-  if (!menu.classList.contains('hidden') && !menu.contains(e.target) && !btn.contains(e.target)) {
-    closeWorkMenu();
-  }
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeWorkMenu();
-});
+// site.js is shared by every page; only the homepage has the flipbook.
+if (document.getElementById('mainWindow')) renderMain();
