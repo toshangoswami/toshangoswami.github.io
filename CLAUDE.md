@@ -33,14 +33,17 @@ If a section doesn't support this, it probably doesn't belong.
 
 Homepage is one scrolling page, in this order:
 
-1. Hero — the polaroid flipbook, with my name and the core line beside it
+1. Hero — my portrait, with my name and the core line beside it
 2. Featured project cards — directly below the hero
 3. Compact all-projects list
 4. Now log
 5. About
-6. Footer
+6. Places — the polaroid flipbook, parked near the bottom
+7. Footer
 
 No video in the hero. Video belongs in featured card covers.
+The portrait leads, so people know who I am. The flipbook is still looking
+for its real home.
 
 Resume link in the nav and in About.
 
@@ -64,8 +67,8 @@ Project pages carry five: problem, what I built, media, result, what broke.
 
 ### Media
 
-A featured card cover is either an image or a short muted looping MP4. The hero
-flipbook is hand-drawn SVG, not video.
+A featured card cover is either an image or a short muted looping MP4. The
+flipbook in Places is hand-drawn SVG, not video.
 
 - Video: `<video muted loop playsinline autoplay preload="metadata" poster="...">`,
   with the poster image as the fallback.
@@ -106,7 +109,7 @@ Redefine only these tokens under `prefers-color-scheme: dark`.
 96px between sections, 64px on mobile. Hairlines carry the structure; no boxes,
 borders, or shadows except on the featured cards and the polaroid.
 
-**Motion** — the hero flipbook flip, card cover videos, and row hover fades.
+**Motion** — the Places flipbook flip, card cover videos, and row hover fades.
 Nothing else moves.
 
 ## Performance and accessibility

@@ -52,29 +52,11 @@
       <p class="hero__where meta">Engineering student at the University of Michigan</p>
     </div>
 
-    <div class="flipbook">
-      <div class="gallery-stack">
-        <div class="stack-card behind-a polaroid">
-          <div id="behindA" class="photo-window ghost"></div>
-        </div>
-        <div class="stack-card behind-b polaroid">
-          <div id="behindB" class="photo-window ghost"></div>
-        </div>
-        <div id="mainCard" class="stack-card main polaroid">
-          <div id="mainWindow" class="photo-window"></div>
-        </div>
-      </div>
-
-      <div class="flipbook__controls">
-        <p id="placeCaption" class="flipbook__caption meta">Boston</p>
-        <button onclick="prevPlace()" class="arrow-btn" aria-label="Previous place">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5 8 12l7 7"/></svg>
-        </button>
-        <button onclick="nextPlace()" class="arrow-btn" aria-label="Next place">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 5 7 7-7 7"/></svg>
-        </button>
-      </div>
-    </div>
+    <img src="assets/img/toshan-photo.jpg"
+         alt="Toshan Goswami"
+         class="hero__portrait"
+         width="589" height="589"
+         fetchpriority="high" />
   </section>
 
   <!-- FEATURED -->
@@ -203,27 +185,51 @@
       <h2 class="section__title">About</h2>
     </div>
 
-    <div class="about">
-      <div>
-        <!-- TODO: rewrite this in your own words. These are your original
-             sentences, moved to first person with the major removed. -->
-        <p class="about__bio">
-          I'm an engineering student at the University of Michigan. I build at the
-          intersection of hardware and software — from computer vision pipelines to
-          physical machines. Recent projects: a radio-controlled car built from
-          scratch, a computer vision system for tracking badminton gameplay, a
-          wildfire spread simulator, and a crack-detection tool for aircraft surfaces.
-        </p>
+    <!-- TODO: rewrite this in your own words. These are your original
+         sentences, moved to first person with the major removed. -->
+    <p class="about__bio">
+      I'm an engineering student at the University of Michigan. I build at the
+      intersection of hardware and software — from computer vision pipelines to
+      physical machines. Recent projects: a radio-controlled car built from
+      scratch, a computer vision system for tracking badminton gameplay, a
+      wildfire spread simulator, and a crack-detection tool for aircraft surfaces.
+    </p>
 
-        <p class="about__links">
-          <a href="assets/toshan-goswami-resume.pdf" class="cite-link">Resume (PDF)</a>
-          <span class="meta"><span class="todo">TODO:</span> add assets/toshan-goswami-resume.pdf</span>
-        </p>
+    <p class="about__links">
+      <a href="assets/toshan-goswami-resume.pdf" class="cite-link">Resume (PDF)</a>
+      <span class="meta"><span class="todo">TODO:</span> add assets/toshan-goswami-resume.pdf</span>
+    </p>
+  </section>
+
+  <!-- PLACES -->
+  <section id="places" class="wrap section">
+    <div class="section__head">
+      <!-- TODO: rename this section if "Places" isn't what you want it called. -->
+      <h2 class="section__title">Places</h2>
+    </div>
+
+    <div class="flipbook">
+      <div class="gallery-stack">
+        <div class="stack-card behind-a polaroid">
+          <div id="behindA" class="photo-window ghost"></div>
+        </div>
+        <div class="stack-card behind-b polaroid">
+          <div id="behindB" class="photo-window ghost"></div>
+        </div>
+        <div id="mainCard" class="stack-card main polaroid">
+          <div id="mainWindow" class="photo-window"></div>
+        </div>
       </div>
-      <img src="assets/img/toshan-photo.jpg"
-           alt="Toshan Goswami"
-           class="about__photo"
-           width="128" height="128" />
+
+      <div class="flipbook__controls">
+        <p id="placeCaption" class="flipbook__caption meta">Boston</p>
+        <button onclick="prevPlace()" class="arrow-btn" aria-label="Previous place">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5 8 12l7 7"/></svg>
+        </button>
+        <button onclick="nextPlace()" class="arrow-btn" aria-label="Next place">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+      </div>
     </div>
   </section>
 

@@ -1,5 +1,5 @@
 const ART = {
-  boston: `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  boston: `<svg viewBox="30 24 340 255" preserveAspectRatio="xMidYMid slice" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <g stroke="#2e3f5c" opacity="0.22" stroke-width="1.2">
       <path d="M0 170 Q40 162 84 168 Q120 173 150 170"/>
     </g>
