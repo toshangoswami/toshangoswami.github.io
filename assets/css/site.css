@@ -394,12 +394,14 @@ a{color:inherit;}
 .stamp-code{font-weight:500; font-size:10px; letter-spacing:0.1em;}
 .stamp-date{font-size:6px; letter-spacing:0.02em; margin-top:2px; opacity:0.85; white-space:nowrap;}
 
-/* flipbook controls sit under the stack, not floating outside it */
+/* flipbook controls sit under the stack, not floating outside it.
+   The tilted ghost cards hang ~24px below the stack, so clear them. */
 .flipbook__controls{
   display:flex;
   align-items:center;
   gap:var(--space-2);
   max-width:420px;
+  margin-top:var(--space-3);
 }
 
 .flipbook__caption{
