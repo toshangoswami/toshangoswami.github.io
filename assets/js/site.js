@@ -111,12 +111,68 @@ const ART = {
       <path d="M54 44 q5 -6 10 0 q5 -6 10 0"/>
       <path d="M84 30 q4 -5 8 0 q4 -5 8 0"/>
     </g>
+  </svg>`,
+
+  annarbor: `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#2f4a4f" opacity="0.36" stroke-width="1.4">
+      <path d="M0 222 Q84 215 168 222 Q252 229 336 219 Q370 215 400 219"/>
+      <path d="M0 242 Q92 235 184 243 Q276 250 400 240"/>
+      <path d="M0 260 Q100 254 200 261 Q300 268 400 258"/>
+      <path d="M0 278 Q110 272 220 279 Q320 285 400 276"/>
+    </g>
+    <g stroke="#23383f" opacity="0.3" stroke-width="1.3">
+      <line x1="166" y1="206" x2="190" y2="206"/>
+      <line x1="170" y1="213" x2="186" y2="213"/>
+      <line x1="174" y1="220" x2="182" y2="220"/>
+    </g>
+    <g stroke="#23383f" stroke-width="1.4" opacity="0.7">
+      <path d="M14 192 Q4 176 18 166 Q16 150 32 150 Q38 138 54 144 Q66 136 76 148 Q92 146 92 162 Q104 170 96 186"/>
+      <path d="M102 192 Q94 178 104 170 Q106 158 120 160 Q132 156 136 170 Q146 176 140 190"/>
+      <path d="M212 190 Q204 172 218 164 Q218 150 234 152 Q242 140 258 148 Q272 142 278 156 Q294 156 292 172 Q302 180 294 192"/>
+      <path d="M298 192 Q292 180 302 174 Q304 164 316 166 Q326 164 328 176 Q336 182 330 192"/>
+      <line x1="314" y1="180" x2="314" y2="192"/>
+      <line x1="40" y1="176" x2="40" y2="192"/><line x1="62" y1="172" x2="62" y2="192"/>
+      <line x1="120" y1="178" x2="120" y2="192"/>
+      <line x1="240" y1="174" x2="240" y2="192"/><line x1="268" y1="176" x2="268" y2="192"/>
+    </g>
+    <g stroke="#23383f" stroke-width="1.5" opacity="0.8">
+      <path d="M362 150 L380 168 L362 186 L344 168 Z"/>
+      <path d="M344 168 L358 174 L380 168"/>
+      <line x1="358" y1="174" x2="362" y2="186"/>
+      <line x1="362" y1="186" x2="362" y2="192"/>
+    </g>
+    <g stroke="#23383f" stroke-width="1.4" opacity="0.65">
+      <path d="M282 236 Q312 248 342 236 Z"/>
+      <circle cx="306" cy="228" r="2.6"/>
+      <line x1="306" y1="231" x2="306" y2="239"/>
+      <line x1="296" y1="248" x2="316" y2="224"/>
+    </g>
+    <g stroke="#23383f" stroke-width="2.2">
+      <line x1="-10" y1="192" x2="410" y2="192"/>
+      <line x1="-10" y1="197" x2="410" y2="197"/>
+      <rect x="152" y="174" width="52" height="18"/>
+      <path d="M172 192 L172 182 Q178 176 184 182 L184 192"/>
+      <rect x="160" y="74" width="36" height="100"/>
+      <line x1="170" y1="102" x2="170" y2="174"/><line x1="186" y1="102" x2="186" y2="174"/>
+      <circle cx="178" cy="88" r="7"/>
+      <path d="M178 88 L178 83"/><path d="M178 88 L182 90"/>
+      <rect x="164" y="52" width="28" height="22"/>
+      <line x1="172" y1="57" x2="172" y2="70"/><line x1="178" y1="57" x2="178" y2="70"/><line x1="184" y1="57" x2="184" y2="70"/>
+      <rect x="169" y="38" width="18" height="14"/>
+      <rect x="174" y="29" width="8" height="9"/>
+    </g>
+    <g stroke="#2f4a4f" opacity="0.32" stroke-width="1.25">
+      <path d="M52 52 q6 -7 12 0 q6 -7 12 0"/>
+      <path d="M86 36 q5 -6 10 0 q5 -6 10 0"/>
+    </g>
   </svg>`
 };
 
 const places = [
   { name: "Boston", key: "boston", code: "BOS", date: "07 · 14 · 25" },
   { name: "San Francisco", key: "sf", code: "SFO", date: "03 · 02 · 25" },
+  // TODO: Ann Arbor stamp date, in the same MM · DD · YY format
+  { name: "Ann Arbor", key: "annarbor", code: "ARB", date: "TODO" },
 ];
 let placeIdx = 0;
 
