@@ -218,3 +218,33 @@ function prevPlace() { flip(-1); }
 
 // site.js is shared by every page; only the homepage has the flipbook.
 if (document.getElementById('mainWindow')) renderMain();
+
+// Project pages: ←/→ follow the prev/next arrows. Skipped while a video or form
+// field has focus (arrows seek a video), and when a modifier is held, so
+// browser shortcuts like Alt+← still go back.
+const pager = document.querySelector('.project-pager');
+if (pager) {
+  document.addEventListener('keydown', e => {
+    if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    if (e.target.closest('input, textarea, select, video, [contenteditable]')) return;
+    const rel = { ArrowLeft: 'prev', ArrowRight: 'next' }[e.key];
+    if (!rel) return;
+    e.preventDefault();
+    pager.querySelector(`[rel="${rel}"]`).click();
+  });
+}
+
+// Click-to-play YouTube: swap the poster link for the player only when asked,
+// so pages don't load YouTube's scripts up front.
+document.querySelectorAll('.yt-facade').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const frame = document.createElement('iframe');
+    frame.src = `https://www.youtube-nocookie.com/embed/${link.dataset.yt}?autoplay=1`;
+    frame.title = link.dataset.title;
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    link.replaceWith(frame);
+    frame.focus();
+  });
+});

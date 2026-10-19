@@ -25,25 +25,49 @@
   </header>
 
   <main class="project-page" id="content">
-    <a href="../../#projects" class="back-link">&#8592; all projects</a>
+    <nav class="project-nav" aria-label="Projects">
+      <a href="../../#projects" class="back-link">&#8592; all projects</a>
+      <div class="project-pager">
+        <a href="../windmesh/" rel="prev" class="arrow-btn" aria-label="Previous project: WindMesh" title="WindMesh">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5 8 12l7 7"/></svg>
+        </a>
+        <a href="../airframe-ae/" rel="next" class="arrow-btn" aria-label="Next project: Airframe AE" title="Airframe AE">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </nav>
 
     <h1 class="project-page__title">Badminton Shot Tracker</h1>
 
     <div class="project-page__meta">
       <span class="meta">2026</span>
       <span class="meta">computer vision</span>
-      <span class="meta"><span class="todo">TODO:</span> stack</span>
-      <span class="meta"><span class="todo">TODO:</span> solo or team, and your role</span>
+      <span class="meta">Python · YOLOv8 · OpenCV · scikit-learn · Streamlit</span>
+      <span class="meta">solo · independent project</span>
     </div>
 
     <section class="field">
       <h2 class="field__title">Problem</h2>
-      <p class="field__body"><span class="todo">TODO:</span> what wasn't being measured well, and why it mattered.</p>
+      <p class="field__body">
+        I wanted tactical feedback on my own badminton, taken from my match
+        footage: which shots I chose, where they went, and where my opponent
+        stood. Advice built on a guess is worse than none, because it's
+        confidently wrong and you can't tell. So every number had to be measured
+        from the video, or marked as unmeasured.
+      </p>
     </section>
 
     <section class="field">
       <h2 class="field__title">What I built</h2>
-      <p class="field__body"><span class="todo">TODO:</span> what the thing is and how it works.</p>
+      <p class="field__body">
+        A Streamlit app that analyses a match clip on a CPU. YOLOv8 finds the
+        players, YOLOv8-pose tracks the near player's skeleton, and a spike in
+        wrist speed marks each contact. A RandomForest classifies the shot from
+        five frames of pose keypoints, then two physical checks can overrule it:
+        contact height, and the shuttle's launch direction when it can be
+        tracked. Rules flag shots that had a better option, and the whole
+        session is read for one thing to work on next, with a drill.
+      </p>
     </section>
 
     <section class="field field--media">
@@ -75,12 +99,18 @@
 
     <section class="field">
       <h2 class="field__title">Result</h2>
-      <p class="field__body"><span class="todo">TODO:</span> one result. A number if you have one.</p>
+      <p class="field__body">
+        Shot-selection feedback on your own match footage. The shot classifier
+        reaches 89% accuracy, trained on hundreds of manually labelled frames.
+      </p>
     </section>
 
     <section class="field">
-      <h2 class="field__title">What broke</h2>
-      <p class="field__body"><span class="todo">TODO:</span> what went wrong and what you changed.</p>
+      <h2 class="field__title">Challenges</h2>
+      <p class="field__body">
+        Consistent tracking was the hardest part. Footage from different camera
+        angles also added too much variability for the prediction model to handle.
+      </p>
     </section>
 
     <section class="field">
@@ -96,6 +126,8 @@
     <p>© Toshan Goswami 2026</p>
     <p><a href="mailto:toshangoswami17@gmail.com" class="cite-link">toshangoswami17@gmail.com</a></p>
   </footer>
+
+  <script src="../../assets/js/site.js" defer></script>
 
 </body>
 </html>

@@ -254,18 +254,8 @@ a{color:inherit;}
   font-weight:400;
   font-size:var(--fs-display);
   line-height:1.02;
-  margin:0 0 var(--space-3);
+  margin:0;
 }
-
-.hero__line{
-  font-size:var(--fs-md);
-  line-height:1.5;
-  max-width:26ch;
-  margin:0 0 var(--space-3);
-  text-wrap:pretty;
-}
-
-.hero__where{margin:0;}
 
 /* The portrait is the first thing on the page — intrinsic file is 589x589,
    so the displayed size stays under ~294px to hold up on 2x screens. */
@@ -507,11 +497,6 @@ a{color:inherit;}
   color:var(--ink-soft);
 }
 
-.card__result strong{
-  font-weight:500;
-  color:var(--accent);
-}
-
 .todo{
   color:var(--accent-warm-ink);
   font-weight:500;
@@ -678,6 +663,40 @@ a{color:inherit;}
 
 .project-media--full video{height:auto;}
 
+/* click-to-play YouTube: a local poster until clicked, so no YouTube
+   script loads with the page. Without JS it's a plain link to YouTube. */
+.yt-facade{
+  position:relative;
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+/* .project-media clips overflow, so pull the focus ring inside */
+.yt-facade:focus-visible{outline-offset:-4px;}
+
+.yt-facade__play{
+  position:absolute;
+  left:50%; top:50%;
+  width:68px; height:48px;
+  transform:translate(-50%,-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  /* sits on a photo, not on paper, so it stays dark in both themes */
+  background:rgba(27,26,23,.82);
+  color:#fff;
+  border-radius:12px;
+}
+.yt-facade:hover .yt-facade__play{background:rgba(27,26,23,.95);}
+
+.project-media iframe{
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+}
+
 .project-media--todo{
   display:flex;
   align-items:center;
@@ -699,6 +718,34 @@ a{color:inherit;}
   transition:color .2s ease;
 }
 .back-link:hover{color:var(--ink);}
+
+/* back link on the left, prev/next project arrows on the right */
+.project-nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--space-2);
+  margin-bottom:var(--space-3);
+}
+.project-nav .back-link{margin-bottom:0;}
+
+.project-pager{display:flex; gap:var(--space-1);}
+/* bigger hit area than the flipbook arrows: these are the main way around */
+.project-pager .arrow-btn{padding:var(--space-1);}
+
+/* Page-to-page navigation cross-fades instead of flashing white, and a
+   project's content rises in slightly. Browsers without cross-document view
+   transitions just navigate normally. */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto;}
+}
+
+.project-page{view-transition-name:project-page;}
+::view-transition-old(project-page){animation:project-out .18s ease both;}
+::view-transition-new(project-page){animation:project-in .28s ease both;}
+
+@keyframes project-out{to{opacity:0; transform:translateY(-6px);}}
+@keyframes project-in{from{opacity:0; transform:translateY(8px);}}
 
 /* --- footer ------------------------------------------------------------- */
 

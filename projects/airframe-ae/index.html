@@ -25,25 +25,46 @@
   </header>
 
   <main class="project-page" id="content">
-    <a href="../../#projects" class="back-link">&#8592; all projects</a>
+    <nav class="project-nav" aria-label="Projects">
+      <a href="../../#projects" class="back-link">&#8592; all projects</a>
+      <div class="project-pager">
+        <a href="../badminton-tracker/" rel="prev" class="arrow-btn" aria-label="Previous project: Badminton Shot Tracker" title="Badminton Shot Tracker">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5 8 12l7 7"/></svg>
+        </a>
+        <a href="../windmesh/" rel="next" class="arrow-btn" aria-label="Next project: WindMesh" title="WindMesh">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </nav>
 
     <h1 class="project-page__title">Airframe AE</h1>
 
     <div class="project-page__meta">
       <span class="meta">2026</span>
       <span class="meta">damage detection</span>
-      <span class="meta"><span class="todo">TODO:</span> stack</span>
-      <span class="meta"><span class="todo">TODO:</span> solo or team, and your role</span>
+      <span class="meta">Python · HTML · Arduino (C++)</span>
     </div>
 
     <section class="field">
       <h2 class="field__title">Problem</h2>
-      <p class="field__body"><span class="todo">TODO:</span> what wasn't being measured well, and why it mattered.</p>
+      <p class="field__body">
+        Checking an airframe for cracks means grounding the plane for an
+        inspection, which costs airlines time and money. I'm looking for a better
+        way: sensors that monitor the hull continuously.
+      </p>
     </section>
 
     <section class="field">
       <h2 class="field__title">What I built</h2>
-      <p class="field__body"><span class="todo">TODO:</span> what the thing is and how it works.</p>
+      <p class="field__body">
+        A simulation of an airliner fitted with acoustic emission sensor nodes.
+        The nodes listen to the hull. The software isolates the frequencies a crack
+        or dent gives off, then triangulates where it happened from how loud the
+        event is at each node and how close the nodes are. The localization model
+        runs in real time, in Python, on a 3D model of the plane. We started from
+        an HTML model of the plane and its nodes, iterated against mock data until
+        the predicted crack matched the real one, then added graphs of the sound data.
+      </p>
     </section>
 
     <section class="field field--media">
@@ -75,12 +96,23 @@
 
     <section class="field">
       <h2 class="field__title">Result</h2>
-      <p class="field__body"><span class="todo">TODO:</span> one result. A number if you have one.</p>
+      <p class="field__body">
+        In simulation, the triangulation located cracks within 95% accuracy,
+        built in 12 hours at CSI Hacks 2026. I'm now continuing it on my own as
+        independent research: better hardware first, then real nodes under a
+        laminated skin that can pick out crack frequencies from the background
+        noise a plane makes every day.
+      </p>
     </section>
 
     <section class="field">
-      <h2 class="field__title">What broke</h2>
-      <p class="field__body"><span class="todo">TODO:</span> what went wrong and what you changed.</p>
+      <h2 class="field__title">Challenges</h2>
+      <p class="field__body">
+        The hardware. We flew in from Boston on a time crunch and left key
+        components behind, and the nearest Micro Center didn't have most of what we
+        needed, so we couldn't build working hardware. I still learned how
+        microphones and Arduinos interact, and how to program an Arduino in C++.
+      </p>
     </section>
 
     <section class="field">
@@ -96,6 +128,8 @@
     <p>© Toshan Goswami 2026</p>
     <p><a href="mailto:toshangoswami17@gmail.com" class="cite-link">toshangoswami17@gmail.com</a></p>
   </footer>
+
+  <script src="../../assets/js/site.js" defer></script>
 
 </body>
 </html>

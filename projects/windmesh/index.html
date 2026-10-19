@@ -25,25 +25,42 @@
   </header>
 
   <main class="project-page" id="content">
-    <a href="../../#projects" class="back-link">&#8592; all projects</a>
+    <nav class="project-nav" aria-label="Projects">
+      <a href="../../#projects" class="back-link">&#8592; all projects</a>
+      <div class="project-pager">
+        <a href="../airframe-ae/" rel="prev" class="arrow-btn" aria-label="Previous project: Airframe AE" title="Airframe AE">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5 8 12l7 7"/></svg>
+        </a>
+        <a href="../badminton-tracker/" rel="next" class="arrow-btn" aria-label="Next project: Badminton Shot Tracker" title="Badminton Shot Tracker">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </nav>
 
     <h1 class="project-page__title">WindMesh</h1>
 
     <div class="project-page__meta">
       <span class="meta">2026</span>
       <span class="meta">simulation</span>
-      <span class="meta"><span class="todo">TODO:</span> stack</span>
-      <span class="meta"><span class="todo">TODO:</span> solo or team, and your role</span>
+      <span class="meta">Python · OpenCV · Roboflow · React</span>
     </div>
 
     <section class="field">
       <h2 class="field__title">Problem</h2>
-      <p class="field__body"><span class="todo">TODO:</span> what wasn't being measured well, and why it mattered.</p>
+      <p class="field__body">
+        The wildfires in Los Angeles and Australia started this. How fast a fire
+        spreads depends on wind speed, so we set out to measure the wind ourselves
+        and predict the spread from it.
+      </p>
     </section>
 
     <section class="field">
       <h2 class="field__title">What I built</h2>
-      <p class="field__body"><span class="todo">TODO:</span> what the thing is and how it works.</p>
+      <p class="field__body">
+        A homemade wind gauge, with computer vision measuring how fast it spins.
+        Those relative wind speeds feed a Rothermel fire-spread model, which draws
+        a map of how the fire will spread across a region over the next 20 minutes.
+      </p>
     </section>
 
     <section class="field field--media">
@@ -57,17 +74,36 @@
                <source src="../../assets/video/windmesh.mp4" type="video/mp4">
              </video>
            Keep videos under 5MB. See CLAUDE.md. -->
-      <div class="project-media project-media--todo">TODO: media for WindMesh</div>
+      <div class="project-media">
+        <a class="yt-facade" href="https://www.youtube.com/watch?v=oBcgTw1WUqg"
+           target="_blank" rel="noopener noreferrer"
+           data-yt="oBcgTw1WUqg" data-title="WindMesh hackathon submission"
+           aria-label="Play the WindMesh hackathon submission video">
+          <img src="../../assets/img/windmesh-cover.webp" alt="" width="1024" height="640" loading="lazy">
+          <span class="yt-facade__play" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </a>
+      </div>
     </section>
 
     <section class="field">
       <h2 class="field__title">Result</h2>
-      <p class="field__body"><span class="todo">TODO:</span> one result. A number if you have one.</p>
+      <p class="field__body">
+        Placed 2nd of 50 participants at LexHack '26. Next: a physical mesh of
+        wind-gauge nodes that feeds the simulation automatically.
+      </p>
     </section>
 
     <section class="field">
-      <h2 class="field__title">What broke</h2>
-      <p class="field__body"><span class="todo">TODO:</span> what went wrong and what you changed.</p>
+      <h2 class="field__title">Challenges</h2>
+      <p class="field__body">
+        Three things were hard: getting the spread math right, getting computer
+        vision to read the gauge accurately while it spun fast, and making the
+        interface clear. We learned how to make computer vision hold up on
+        fast-moving objects, and how to combine several variables in one
+        predictive model.
+      </p>
     </section>
 
     <section class="field">
@@ -75,6 +111,9 @@
       <p class="field__body">
         <a href="https://github.com/toshangoswami/WindMesh"
            target="_blank" rel="noopener noreferrer" class="cite-link">Source on GitHub &#8599;</a>
+        <br>
+        <a href="https://www.youtube.com/watch?v=oBcgTw1WUqg"
+           target="_blank" rel="noopener noreferrer" class="cite-link">Submission video on YouTube &#8599;</a>
       </p>
     </section>
   </main>
@@ -83,6 +122,8 @@
     <p>© Toshan Goswami 2026</p>
     <p><a href="mailto:toshangoswami17@gmail.com" class="cite-link">toshangoswami17@gmail.com</a></p>
   </footer>
+
+  <script src="../../assets/js/site.js" defer></script>
 
 </body>
 </html>
