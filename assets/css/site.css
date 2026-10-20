@@ -254,7 +254,18 @@ a{color:inherit;}
   font-weight:400;
   font-size:var(--fs-display);
   line-height:1.02;
+  margin:0 0 var(--space-2);
+}
+
+.hero__title{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:var(--fs-xl);
+  line-height:1.15;
+  color:var(--ink-soft);
+  max-width:20ch;
   margin:0;
+  text-wrap:balance;
 }
 
 /* The portrait is the first thing on the page — intrinsic file is 589x589,
@@ -732,6 +743,33 @@ a{color:inherit;}
 .project-pager{display:flex; gap:var(--space-1);}
 /* bigger hit area than the flipbook arrows: these are the main way around */
 .project-pager .arrow-btn{padding:var(--space-1);}
+
+/* From tablet up the arrows leave the nav row and sit at mid-height on either
+   side of the screen, like a slideshow. Below 1200px there's no margin outside
+   the page for them, so the page pads in to keep content clear of them; from
+   1200px they sit just outside the 1040px page instead. */
+@media (min-width:768px){
+  .project-pager .arrow-btn{
+    position:fixed;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:10;
+  }
+  .project-pager [rel="prev"]{left:var(--space-2);}
+  .project-pager [rel="next"]{right:var(--space-2);}
+  .project-pager svg{width:32px; height:32px;}
+
+  /* captured on its own so the arrows hold still while the page fades */
+  .project-pager{view-transition-name:project-pager;}
+
+  .project-page{padding-inline:5rem;}
+}
+
+@media (min-width:1200px){
+  .project-page{padding-inline:var(--gutter);}
+  .project-pager [rel="prev"]{left:calc(50% - var(--page-max) / 2 - 3.5rem);}
+  .project-pager [rel="next"]{right:calc(50% - var(--page-max) / 2 - 3.5rem);}
+}
 
 /* Page-to-page navigation cross-fades instead of flashing white, and a
    project's content rises in slightly. Browsers without cross-document view
