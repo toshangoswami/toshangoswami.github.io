@@ -171,8 +171,7 @@ const ART = {
 const places = [
   { name: "Boston", key: "boston", code: "BOS", date: "07 · 14 · 25" },
   { name: "San Francisco", key: "sf", code: "SFO", date: "03 · 02 · 25" },
-  // TODO: Ann Arbor stamp date, in the same MM · DD · YY format
-  { name: "Ann Arbor", key: "annarbor", code: "ARB", date: "TODO" },
+  { name: "Ann Arbor", key: "annarbor", code: "ARB", date: "08 · 31 · 26" },
 ];
 let placeIdx = 0;
 
