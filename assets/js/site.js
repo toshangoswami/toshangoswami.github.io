@@ -247,3 +247,19 @@ document.querySelectorAll('.yt-facade').forEach(link => {
     frame.focus();
   });
 });
+
+// Build clips in the Now log play only while on screen, so a row of them
+// doesn't all download and run at once. Under reduced motion they stay on
+// their poster, with controls to play by hand.
+const peekClips = document.querySelectorAll('.peek video');
+if (peekClips.length) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    peekClips.forEach(v => { v.controls = true; });
+  } else {
+    const io = new IntersectionObserver(entries => entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) target.play().catch(() => {});
+      else target.pause();
+    }), { threshold: 0.25 });
+    peekClips.forEach(v => io.observe(v));
+  }
+}

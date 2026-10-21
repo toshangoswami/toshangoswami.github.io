@@ -570,7 +570,6 @@ a{color:inherit;}
   list-style:none;
   margin:0;
   padding:0;
-  max-width:var(--prose-max);
 }
 
 .now-entry{
@@ -586,10 +585,52 @@ a{color:inherit;}
 
 .now-entry__date{margin:0;}
 
-.now-entry__body{margin:0;}
+/* text holds to prose width; the snapshots below it may run wider */
+.now-entry__body{margin:0; max-width:calc(var(--prose-max) - 7rem - var(--space-3));}
+
+/* sneak-peek snapshots of work in progress — framed like the Places polaroid
+   and tipped slightly, so they read as snapshots, not finished covers.
+   Two to a row on phones, as many as fit from there. */
+.now-entry__peeks{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--space-3);
+  margin-top:var(--space-3);
+}
+
+.peek{
+  width:min(11rem, calc(50% - var(--space-3) / 2));
+  margin:0;
+  padding:10px 10px 0;
+}
+/* a lone snapshot gets more room */
+.peek:only-child{width:min(100%, 15rem);}
+
+.peek:nth-child(3n+1){transform:rotate(-1.5deg);}
+.peek:nth-child(3n+2){transform:rotate(1deg);}
+.peek:nth-child(3n){transform:rotate(-.5deg);}
+
+.peek img,
+.peek video{
+  width:100%;
+  height:auto;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  /* pull the phone-camera color toward the warm paper palette */
+  filter:saturate(.85) sepia(.08);
+}
+
+.peek figcaption{
+  padding:var(--space-1) 0;
+  text-align:center;
+}
 
 @media (min-width:640px){
   .now-entry{grid-template-columns:7rem 1fr;}
+  /* keep the snapshots in the text column, not under the date */
+  .now-entry__peeks{grid-column:2;}
+  /* four to a row, shrinking to fit before they wrap */
+  .peek{width:min(11rem, calc(25% - var(--space-3) * 3 / 4));}
 }
 
 /* --- about -------------------------------------------------------------- */
