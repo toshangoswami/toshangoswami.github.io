@@ -708,10 +708,9 @@ a{color:inherit;}
 }
 
 /* full-length recording: keeps its own aspect ratio (from width/height), never cropped */
-.project-media--full{
-  aspect-ratio:auto;
-  margin-top:var(--space-2);
-}
+.project-media--full{aspect-ratio:auto;}
+
+.project-media + .project-media--full{margin-top:var(--space-2);}
 
 .project-media--full video{height:auto;}
 
